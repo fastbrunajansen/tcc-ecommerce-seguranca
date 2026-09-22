@@ -1,0 +1,4 @@
+# Ignorar arquivos temporários e de sistema
+*.tmp
+*.log
+.DS_Store
