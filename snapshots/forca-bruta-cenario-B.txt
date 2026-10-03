@@ -1,0 +1,23 @@
+DEFESA CONTRA FORCA BRUTA - CENARIO B
+
+Defesa desenvolvida: plugin proprio em PHP (limite-login.php)
+Mecanismo: conta tentativas falhas por IP (via transients do WordPress);
+apos 5 tentativas, bloqueia novas tentativas por 15 minutos.
+Usa os hooks do WordPress (authenticate, wp_login_failed, wp_login).
+
+Validacao (antes e depois):
+- Cenario A: Hydra descobriu a senha real (123456) em 38 tentativas, sem bloqueio.
+- Cenario B: apos 5 tentativas, o sistema bloqueia. O Hydra nao descobre mais a
+  senha real. Observou-se um FALSO POSITIVO (reportou "daniel", que nao e a senha):
+  isso ocorre porque o bloqueio altera a resposta do servidor, e a ferramenta,
+  configurada para detectar a ausencia da mensagem "esta incorreta", interpreta
+  erroneamente o bloqueio como sucesso.
+- Teste manual (validacao definitiva): apos 5 tentativas falhas, aparece
+  "Acesso temporariamente bloqueado por excesso de tentativas", em vez de
+  "senha incorreta".
+
+Analise: a defesa torna o ataque de forca bruta inviavel (limita a 5 tentativas)
+e nao confiavel para o atacante (induz a ferramenta a falsos positivos).
+A validacao definitiva da defesa e o teste manual, nao a saida do Hydra.
+
+Data: 03/10/2026

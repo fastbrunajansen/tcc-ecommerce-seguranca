@@ -1,0 +1,19 @@
+ATAQUE DE FORCA BRUTA - CENARIO A (VULNERAVEL)
+
+Ferramenta: Hydra v9.6
+Alvo: login do WordPress (wp-login.php), conta carla_souza (senha fraca proposital: 123456)
+Wordlist: rockyou.txt (14.344.398 senhas - referencia padrao em testes de seguranca)
+
+Resultado: senha "123456" descoberta em ~4 segundos, 38 tentativas, sem nenhum bloqueio.
+O login do WordPress, por padrao, NAO limita tentativas de autenticacao.
+
+Nota metodologica: a condicao de deteccao do Hydra foi ajustada para a mensagem de erro
+real do WordPress ("esta incorreta"), eliminando falso positivo da primeira execucao e
+garantindo a precisao do resultado.
+
+Comando:
+hydra -l carla_souza -P rockyou.txt localhost -s 8080 http-post-form
+  "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Acessar:F=está incorreta" -V -f
+
+Vulnerabilidade: ausencia de mitigacao de forca bruta (tentativas ilimitadas de login)
+Data: 03/10/2026
