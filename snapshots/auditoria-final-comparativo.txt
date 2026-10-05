@@ -1,0 +1,48 @@
+AUDITORIA FINAL COMPARATIVA - CENARIO A x CENARIO B
+
+=== OWASP ZAP ===
+Cenario A (baseline, antes das defesas):
+  High: 0 | Medium+Low (WARN): 22 | PASS: 45
+
+Cenario B (apos hardening de cabecalhos):
+  High: 0 | Medium: 4 | Low: 7 | Informational: 10
+  Total Medium+Low: 11
+
+TAXA DE MITIGACAO (ZAP): de 22 para 11 avisos = reducao de 50%
+
+Avisos eliminados, atribuiveis diretamente ao hardening desenvolvido:
+  - Missing Anti-clickjacking Header (X-Frame-Options aplicado)
+  - X-Content-Type-Options Header Missing (nosniff aplicado)
+  - CSP Header Not Set (Content-Security-Policy aplicada)
+  - Permissions Policy Header Not Set (Permissions-Policy aplicada)
+  - Server Leaks Version via Server header (ServerTokens Prod aplicado)
+  - Cookie without SameSite Attribute (regra de cookie aplicada)
+
+Avisos remanescentes no Cenario B (fora do escopo do hardening aplicado):
+  - Cookie No HttpOnly Flag (pendente - regra nao cobriu todos os cookies)
+  - Information Disclosure - Sensitive Information in URL
+  - Information Disclosure - Suspicious Comments
+  - Cookie Poisoning
+  - User Controllable HTML Element Attribute (XSS potencial)
+  - Server Leaks via X-Powered-By (pendente - requer expose_php=Off)
+  - Non-Storable Content
+
+=== SQLMap ===
+Cenario A: injecao confirmada na pagina busca-produto.php (boolean-based,
+  time-based, UNION); extracao completa da tabela wp_users.
+Cenario B: "all tested parameters do not appear to be injectable" apos
+  desenvolvimento de consulta parametrizada + validacao de tipo.
+TAXA DE MITIGACAO (SQLi): de vulneravel (3 tecnicas, extracao completa de
+  dados) para nao explorável = mitigacao de 100% no ponto testado.
+
+=== Hydra (forca bruta) ===
+Cenario A: senha descoberta em 38 tentativas, ~4 segundos, sem bloqueio.
+Cenario B: bloqueio apos 5 tentativas (plugin desenvolvido); senha real
+  nao mais descoberta pela ferramenta automatizada.
+
+=== MFA ===
+Cenario A: nao existia segundo fator.
+Cenario B: acesso negado mesmo com senha correta, na ausencia do codigo
+  de verificacao valido (plugin + pagina de verificacao desenvolvidos).
+
+Data da auditoria final: 04/10/2026

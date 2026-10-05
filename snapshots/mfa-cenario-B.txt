@@ -1,0 +1,31 @@
+DEFESA MFA (AUTENTICACAO MULTIFATOR) - CENARIO B
+
+Defesa desenvolvida: plugin proprio em PHP (mfa-login.php + mfa-verificar.php),
+usando a biblioteca PHPGangsta_GoogleAuthenticator (RFC 6238, TOTP) para o
+calculo criptografico — pratica recomendada de nao reimplementar primitivas
+de seguranca. A integracao do fluxo foi integralmente desenvolvida.
+
+Arquitetura:
+- mfa-login.php: intercepta a autenticacao (hook authenticate); se senha
+  correta e MFA ativo para o usuario, gera token temporario (transient,
+  5 min) e redireciona para pagina propria de verificacao.
+- mfa-verificar.php: pagina HTML independente e dedicada, que solicita o
+  codigo de 6 digitos e o valida contra o segredo do usuario.
+- Segredo TOTP gerado e exibido no perfil do usuario para configuracao
+  manual no aplicativo autenticador (sem QR code via servico externo,
+  mantendo o ambiente isolado).
+
+Validacao (fluxo completo):
+- Login com usuario + senha corretos + codigo correto: acesso liberado.
+- Login com usuario + senha corretos, SEM o codigo ou com codigo errado:
+  acesso negado ("Codigo invalido. Tente novamente."), mesmo com a senha
+  correta.
+
+Processo de desenvolvimento (nota metodologica): a primeira versao tentou
+reaproveitar o formulario de login padrao do WordPress, escondendo os
+campos de usuario/senha via CSS/JavaScript. Essa abordagem revelou-se
+fragil (conflitos com validacao HTML5 do campo obrigatorio). A solucao
+foi revista para uma pagina de verificacao dedicada e independente,
+resultando em arquitetura mais robusta e de responsabilidades separadas.
+
+Data: 03/10/2026
