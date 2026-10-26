@@ -9,3 +9,6 @@
 | 24/10 | Citar o relatório completo do Verizon DBIR 2026 (p. 94), não o resumo executivo | Setor Retail tem seção própria no relatório completo |
 | 24/10 | Estudos sobre IA e código inseguro entram só como menção na justificativa, sem percentuais além dos verificados | Escopo do TCC; Tóth et al. tem inconsistência numérica |
 | 24/10 | Documentação do projeto guardada na pasta `documentacoes/` do repositório | Pedido da autora; evita perda de contexto |
+| 26/10 | Aplicar todas as melhorias das prioridades 1 e 2 no Cenário B (versão 2) e refazer a auditoria final | Alinhar o MFA às RFC 4226/6238 e ao NIST, corrigir a regra de cookie e a CSP antes da banca; uma rodada única de testes |
+| 26/10 | Preservar a versão 1 em `snapshots/cenario-B-v1/` | Rastreabilidade: a monografia pode citar a evolução |
+| 26/10 | Configuração do Cenário B montada por `compose.cenario-b.yml` | Reprodutibilidade: antes, a configuração existia só dentro do contêiner |

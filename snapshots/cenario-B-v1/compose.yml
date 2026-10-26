@@ -1,0 +1,28 @@
+services:
+  db:
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: loja
+      MARIADB_USER: loja_user
+      MARIADB_PASSWORD: senha_teste_local
+      MARIADB_ROOT_PASSWORD: root_teste_local
+    volumes:
+      - db_data:/var/lib/mysql
+  wordpress:
+    image: wordpress:php8.3-apache
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "0.0.0.0:8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: loja_user
+      WORDPRESS_DB_PASSWORD: senha_teste_local
+      WORDPRESS_DB_NAME: loja
+    volumes:
+      - wp_data:/var/www/html
+volumes:
+  db_data:
+  wp_data:

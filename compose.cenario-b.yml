@@ -1,0 +1,14 @@
+# Complemento do Cenário B (versão 2, 26/10/2026)
+# Uso: docker compose -f compose.yml -f compose.cenario-b.yml up -d
+#
+# Monta as configurações de hardening a partir dos arquivos do repositório,
+# para que fiquem versionadas e sobrevivam à recriação do contêiner
+# (antes, estavam copiadas só para dentro dele).
+# O Cenário A continua sendo o compose.yml sozinho.
+services:
+  wordpress:
+    # ativa o mod_headers do Apache e depois segue o início normal da imagem
+    command: ["sh", "-c", "a2enmod headers >/dev/null && exec docker-entrypoint.sh apache2-foreground"]
+    volumes:
+      - ./seguranca-headers.conf:/etc/apache2/conf-enabled/seguranca-headers.conf:ro
+      - ./seguranca-php.ini:/usr/local/etc/php/conf.d/zz-seguranca.ini:ro

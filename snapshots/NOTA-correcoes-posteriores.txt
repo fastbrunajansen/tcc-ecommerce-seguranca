@@ -1,0 +1,20 @@
+NOTA SOBRE CORRECOES POSTERIORES AOS SNAPSHOTS
+
+Os arquivos desta pasta sao registros historicos e foram mantidos como estavam.
+Duas informacoes neles foram corrigidas depois:
+
+1) auditoria-final-comparativo.txt (04/10/2026) - numeros do OWASP ZAP
+   O "22 -> 11 avisos (reducao de 50%)" misturava duas medidas:
+   22 = contagem de avisos do terminal (inclui informativos) no Cenario A;
+   11 = alertas Medium + Low do relatorio HTML no Cenario B.
+   Comparacao correta (mesma ferramenta, ZAP 2.17.0, 171 endpoints):
+   - Relatorio HTML, Medium + Low: 16 (A, 14/09) -> 11 (B, 24/10) = reducao de 31%
+   - Terminal (WARN-NEW): 22 (A) -> 16 (B, 24/10) = reducao de 27%
+   A regra de cookie NAO eliminou o alerta de SameSite (persiste com 3 ocorrencias).
+   Evidencias: documentacoes/evidencias-zap/. Detalhes: documentacoes/DIARIO.md (24/10).
+
+2) README-cenario-B-hardening.txt e auditoria-final-comparativo.txt - X-Powered-By
+   Aparece como pendente; foi corrigido em 05/10/2026 (expose_php = Off),
+   confirmado por curl -I e pelo ZAP de 24/10 (regra 10037 em PASS).
+
+Registro feito em 26/10/2026.

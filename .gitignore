@@ -2,5 +2,6 @@
 *.tmp
 *.log
 .DS_Store
-rockyou.txt
+
+# Wordlist usada nos testes de força bruta (grande, de terceiros)
 rockyou.txt
