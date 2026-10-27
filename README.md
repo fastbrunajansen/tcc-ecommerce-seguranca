@@ -62,7 +62,7 @@ docker compose -f compose.yml -f compose.cenario-b.yml up -d
 
 Os plugins (`limite-login.php`, `mfa-*.php`, `totp-lib.php`) ficam em `wp-content/plugins/` e o `busca-produto.php` na raiz do site, dentro do volume `wp_data`.
 
-O site fica em `http://localhost:8080`, acessível apenas de dentro da VM; do computador hospedeiro, use um túnel SSH (`ssh -L 8080:localhost:8080 ...`). O banco pode ser restaurado a partir de `baseline_inicial.sql` (estado inicial) ou de `snapshots/cenario-A-banco.sql` (Cenário A congelado).
+O ambiente roda numa VM do GNOME Boxes/libvirt com rede `passt`, que encaminha `127.0.0.1:8080` (loja) e `127.0.0.1:2222` (SSH) do computador hospedeiro para a VM. O site fica em `http://localhost:8080` e o SSH em `ssh -p 2222 bruna@localhost`, ambos só a partir do próprio hospedeiro (ver `documentacoes/vm-rede-passt.md`). O banco pode ser restaurado a partir de `baseline_inicial.sql` (estado inicial) ou de `snapshots/cenario-A-banco.sql` (Cenário A congelado).
 
 ## Limitações conhecidas
 
@@ -75,4 +75,4 @@ O site fica em `http://localhost:8080`, acessível apenas de dentro da VM; do co
 ## Versões do Cenário B
 
 - **v1 (22/09 a 05/10/2026):** arquivos em `snapshots/cenario-B-v1/`.
-- **v2 (26/10/2026):** limite e uso único no código MFA, segredo TOTP de 160 bits, CSP com `frame-ancestors` e `form-action`, regra de cookie corrigida, busca restrita a produtos publicados, erros capturados, configuração versionada. Roteiro de testes em `documentacoes/ROTEIRO-cenario-B-v2.md`.
+- **v2 (26/10/2026):** limite e uso único no código MFA, segredo TOTP de 160 bits, CSP com `frame-ancestors` e `form-action`, regra de cookie corrigida, busca restrita a produtos publicados, erros capturados, configuração versionada, rede da VM restrita ao hospedeiro. Testes T1 a T4 aprovados em 26/10; evidências em `snapshots/cenario-B-v2/`. Roteiro em `documentacoes/ROTEIRO-cenario-B-v2.md`.

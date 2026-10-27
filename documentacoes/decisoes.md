@@ -12,3 +12,6 @@
 | 26/10 | Aplicar todas as melhorias das prioridades 1 e 2 no Cenário B (versão 2) e refazer a auditoria final | Alinhar o MFA às RFC 4226/6238 e ao NIST, corrigir a regra de cookie e a CSP antes da banca; uma rodada única de testes |
 | 26/10 | Preservar a versão 1 em `snapshots/cenario-B-v1/` | Rastreabilidade: a monografia pode citar a evolução |
 | 26/10 | Configuração do Cenário B montada por `compose.cenario-b.yml` | Reprodutibilidade: antes, a configuração existia só dentro do contêiner |
+| 26/10 | Registrar cada sessão (do "oi" ao "tchau") em `documentacoes/sessoes/AAAA-MM-DD_sessao.md`, entregue ao final para download e commit | Pedido da autora: ter o histórico completo |
+| 26/10 | Isolar o laboratório no `passt` (127.0.0.1 no Manjaro) e manter o contêiner em `8080:80` | A VM só é alcançável pelo `passt`; a porta do contêiner não era o ponto de exposição |
+| 26/10 | SQLMap da auditoria final pelo pacote do Ubuntu (1.10.4), mesmos parâmetros | Falha no download da imagem Docker; registrar a diferença de método na monografia |

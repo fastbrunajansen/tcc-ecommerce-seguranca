@@ -1,5 +1,7 @@
 # Roteiro — aplicar e testar o Cenário B versão 2
 
+> **Situação em 26/10/2026, 22h:** Partes 0 a 4 e testes T1 a T4 concluídos e aprovados. Faltam T5 (Hydra), T6 (ZAP final) e a Parte 6 (registro). Lembre: `export COMPOSE_FILE=compose.yml:compose.cenario-b.yml` a cada novo terminal.
+
 Preparado em 26/10/2026. Tempo estimado: 1h a 1h30 (a maior parte é esperar o ZAP e o SQLMap).
 Marque cada item ao concluir. Se algum resultado for diferente do **esperado**, pare e mande a saída para o Claude.
 
@@ -11,7 +13,7 @@ Marque cada item ao concluir. Se algum resultado for diferente do **esperado**, 
 | `mfa-login.php` | Segredo TOTP de 160 bits (antes 80; RFC 4226 exige no mínimo 128) |
 | `seguranca-headers.conf` | CSP com `frame-ancestors` e `form-action`; regra de cookie nas duas tabelas do Apache, sem duplicar atributos |
 | `busca-produto.php` | Credenciais do banco lidas do ambiente; só retorna produtos publicados; ID precisa ser ≥ 1; erros do banco capturados (no PHP 8.1+ o mysqli lança exceções, e a checagem antiga não as pegava) |
-| `compose.yml` | Porta só em `127.0.0.1:8080` |
+| `compose.yml` | ~~Porta só em `127.0.0.1:8080`~~ — revertido para `8080:80` em 26/10; o isolamento foi feito no `passt` (ver `vm-rede-passt.md`) |
 | `compose.cenario-b.yml` (novo) | Monta o `seguranca-headers.conf` e o `seguranca-php.ini` do repositório no contêiner e ativa o `mod_headers` |
 | `seguranca-php.ini` (novo) | `expose_php = Off` versionado; `display_errors = Off` (erros vão para o log, não para a página) |
 | `snapshots/cenario-B-v1/` (novo) | Cópia dos arquivos da versão 1, para registro |
@@ -35,7 +37,7 @@ git push
 ## Parte 1 — Na VM: atualizar o repositório
 
 ```bash
-ssh -p 2222 bruna@192.168.15.150
+ssh -p 2222 bruna@localhost     # desde 26/10 (antes: bruna@192.168.15.150)
 cd ~/tcc-ecommerce/cenario-a
 git status
 git pull
@@ -142,13 +144,7 @@ docker run --rm -it --network host parrotsec/sqlmap \
 
 ### T4. MFA (no navegador do Manjaro)
 
-Em **outro terminal do Manjaro**, abra um túnel (necessário porque agora a porta só existe dentro da VM):
-
-```bash
-ssh -p 2222 -L 8080:localhost:8080 bruna@192.168.15.150
-```
-
-Deixe aberto e acesse `http://localhost:8080/wp-admin` no navegador, com o usuário que tem MFA (o mesmo do teste de 03/10).
+Acesse `http://localhost:8080/wp-admin` no navegador do Manjaro (sem túnel: o `passt` já encaminha a porta), com o usuário que tem MFA (o mesmo do teste de 03/10).
 
 **Gerar a chave nova de 160 bits:**
 1. Perfil → desmarque **Ativar MFA** → Salvar. A chave nova (32 caracteres) aparece.

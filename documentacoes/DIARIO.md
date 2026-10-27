@@ -18,6 +18,16 @@ Regra: erros e correções também entram (rastreabilidade).
 
 **Cenário B versão 2 preparada (decisão da autora: aplicar todas as melhorias das prioridades 1 e 2 da revisão).** Arquivos: `mfa-verificar.php` (5 tentativas, falhas somadas ao limite por IP, uso único, tolerância de 1 passo, `wp_login`), `mfa-login.php` (segredo de 160 bits; RFC 4226 R6 exige 128), `seguranca-headers.conf` (CSP com frame-ancestors e form-action; cookie editado em `always` e `onsuccess`, conforme a documentação do mod_headers, sem duplicar atributos), `busca-produto.php` (credenciais do ambiente, só produtos publicados, ID ≥ 1, exceções do mysqli capturadas: no PHP 8.1+ a checagem `connect_error` da v1 não era alcançada), `compose.yml` (127.0.0.1), `compose.cenario-b.yml` e `seguranca-php.ini` (novos; expose_php e display_errors Off). Testes feitos aqui: sintaxe PHP, lógica do MFA com simulação do WordPress (acerto, reuso recusado, esgotamento na 5ª falha, eventos de login), busca sem banco (parâmetros inválidos recusados, erro genérico com HTTP 500), regex do cookie. Falta testar na VM: `documentacoes/ROTEIRO-cenario-B-v2.md`. Versão 1 preservada em `snapshots/cenario-B-v1/`.
 
+**Commit `cd54e9b` (Cenário B v2, antes dos testes) enviado ao GitHub** pelo Manjaro; o primeiro push falhou com erro do servidor do GitHub (`fatal error in commit_refs`), o segundo funcionou.
+
+**Testes da v2 na VM (20h51 a 22h00): T1 a T4 aprovados.** Cabeçalhos, cookies (a correção do `edit` em `always` e `onsuccess` funcionou: na v1 a regra não tinha efeito sobre os cookies do PHP), busca, SQLMap 1.10.4 (instalado pelo `apt`, porque a imagem Docker falhou ao baixar) e MFA (login, uso único, esgotamento, bloqueio integrado ao limite por IP, liberação). Faltam T5 (Hydra) e T6 (ZAP).
+
+**Achado de rede:** o `passt` (rede da VM) escutava em todas as interfaces do Manjaro, expondo a loja e o SSH à rede Wi-Fi; `192.168.15.150` é o IP do Manjaro. Corrigido com `address='127.0.0.1'` nos encaminhamentos (ver `vm-rede-passt.md`); o `compose.yml` voltou para `8080:80`. Erro meu registrado: a mudança da v2 para `127.0.0.1` no `compose.yml` estava na camada errada.
+
+**Correção de afirmação:** a imagem do WordPress já desliga a exibição de erros (`error-logging.ini`); na v1 o erro do banco não aparecia na tela, mas o tratamento do próprio código nunca rodava.
+
+**Novo hábito: registro por sessão** em `documentacoes/sessoes/` (pedido da autora), e criado o `documentacoes/GUIA-IMPLEMENTACAO.md`, que explica cada arquivo do repositório e o motivo de cada alteração da v2.
+
 **Repositório:** os commits de código foram feitos pela VM; a pasta `documentacoes` foi commitada pelo Manjaro. O segundo pacote (v17 e rascunho da 2.3) não chegou ao GitHub.
 
 ## 2026-10-25 (domingo)
