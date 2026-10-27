@@ -1,0 +1,18 @@
+HTTP/1.1 200 OK
+Date: Tue, 27 Oct 2026 00:00:54 GMT
+Server: Apache
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: geolocation=(), microphone=(), camera=()
+Expires: Wed, 11 Jan 1984 05:00:00 GMT
+Cache-Control: no-cache, must-revalidate, max-age=0, private
+Link: <http://localhost:8080/index.php?rest_route=/>; rel="https://api.w.org/"
+Link: <http://localhost:8080/index.php?rest_route=/wp/v2/pages/7>; rel="alternate"; title="JSON"; type="application/json"
+Link: <http://localhost:8080/?p=7>; rel=shortlink
+Set-Cookie: woocommerce_items_in_cart=1; path=/
+Set-Cookie: woocommerce_cart_hash=8a86014ea231ecd1018be3754d70f40f; path=/
+Set-Cookie: wp_woocommerce_session_37d007a56d816107ce5b52c10342db37=t_534729723711fc476708ed09f6df7d%7C1793232054%7C1793145654%7C00eb8a863bf9bd152dfaba33e8de619d; expires=Thu, 29 Oct 2026 00:00:54 GMT; Max-Age=172800; path=/; HttpOnly
+Content-Type: text/html; charset=UTF-8
+

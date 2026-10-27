@@ -15,7 +15,7 @@ services:
     depends_on:
       - db
     ports:
-      - "127.0.0.1:8080:80"   # v2: só acessível de dentro da VM (antes 0.0.0.0)
+      - "8080:80"   # a VM so e alcancavel pelo passt, restrito a 127.0.0.1 no Manjaro
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: loja_user

@@ -1,0 +1,3 @@
+Set-Cookie: woocommerce_items_in_cart=1; path=/; HttpOnly; SameSite=Strict
+Set-Cookie: woocommerce_cart_hash=8a86014ea231ecd1018be3754d70f40f; path=/; HttpOnly; SameSite=Strict
+Set-Cookie: wp_woocommerce_session_37d007a56d816107ce5b52c10342db37=t_48f59ed1dcd41663d2c5d44b74399c%7C1793232978%7C1793146578%7Cf7521ade2f950b9c3e556c9e3bd088f0; expires=Thu, 29 Oct 2026 00:16:18 GMT; Max-Age=172800; path=/; HttpOnly; SameSite=Strict
