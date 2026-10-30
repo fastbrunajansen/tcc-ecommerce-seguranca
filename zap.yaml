@@ -27,7 +27,7 @@ jobs:
 - parameters:
     reportDescription: ''
     reportDir: /zap/wrk/
-    reportFile: relatorio-zap-cenarioB.html
+    reportFile: relatorio-zap-cenarioB-v2.html
     reportTitle: ZAP Scanning Report
     template: traditional-html
   type: report
